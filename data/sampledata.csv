@@ -1,4 +1,4 @@
-pptnum,Title,Artist,memoryage,type,vivid,memvalence,memenergy,unique,important,social,emo,emoextra,corresponding,"mydata[, 149]",danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,track_id,key_name,mode_name,key_mode,Age
+pptnum,Title,Artist,memoryage,type,vivid,memvalence,memenergy,unique,important,social,emo,emoextra,corresponding,specific,danceability,energy,key,loudness,mode,speechiness,acousticness,instrumentalness,liveness,valence,tempo,track_id,key_name,mode_name,key_mode,Age
 1,Izzo (H.O.V.A.),Jay-Z,6,2,7,5,5,5,5,2,"2,4,17,19,23,24,38",,0,1,0.618,0.844,1,-4.051,0,0.342,0.0178,0.000126,0.0634,0.697,84.411,4h5KBcltGefua73AUPYps7,C#,minor,C# minor,28
 2,Wake Me Up Before You Go-Go,Wham!,13.5,3,5,5,5,4,5,5,"8,19,23,24,27,38",Fun,1,0,0.62,0.573,0,-11.893,1,0.0423,0.271,0,0.0607,0.897,81.548,0ikz6tENMONtK6qGkOrU3c,C,major,C major,49
 3,Moondance - 2013 Remaster,Van Morrison,19,3,7,5,5,2,5,5,"3,10,19,24,25,26",,0,0,0.606,0.282,9,-12.207,0,0.0339,0.501,8.30E-06,0.152,0.563,67.409,683b4ikwa62JevCjwrmfg6,A,minor,A minor,55
