@@ -8,9 +8,10 @@
 #   * NATURAL LOG TRANSFORM
 #   * INVERSE TRANSFORM 
 # ON ANY OF THE VARIABLES YOU SPECIFY,  OUTPUT HISTOGRAMS AND SAVE A NEW DATAFRAME WITH THE
-# TRANSFORMED DATA.
+# TRANSFORMED DATA CALLED 'VAR_TRANSFORMED'
 
-
+# ONLY LINES 29, 32, 36 AND 39 NEED TO BE UPDATED WITH YOUR WORKING DIRECTORY, DATASET, 
+# VARIABLE LIST, AND SKEWNESS TO CORRECT FOR.
 
 # load libraries
 library(ggplot2)
@@ -29,11 +30,13 @@ setwd("/Users/safiyyahnawaz/Documents/assumption-testing-lmems")
 
 # read in with the sample data to test, or replace with your data
 data <- read.csv('data/sampledata.csv')
-data <- data[!is.na(data$memoryage),]
 
-# Update dependent variables list with name of outcome variables you want to try transformations on
+# Update dependent variables list with name of variables you want to try transformations on
 # List can have as many variables as needed
-variables <- list("memoryage")
+variables <- list("tempo","liveness")
+
+# Setting skew value, can either be "pos" or "neg". Pick pos if the data have a positive skew, and neg if they have a negative skew
+skewval <- "pos"
 
 transformvars <- function(mydata,vars,skew){
   # Initialising document Assumption Tests Document
@@ -93,6 +96,7 @@ transformvars <- function(mydata,vars,skew){
     # Save the stats descriptions, including Shapiro-Wilks
     sw <- paste0(vars[[i]],"_sw_sqrt")
     x <- data.frame(stat.desc(foo$sqrt, norm=TRUE))
+    colnames(x) <- c(paste0(vars[[i]],"_sqrt"))
     x <- round(x, digits =2)
     desc_sqrt <- cbind(desc_sqrt,x)
     
@@ -106,6 +110,7 @@ transformvars <- function(mydata,vars,skew){
     # Save the stats descriptions, including Shapiro-Wilks
     sw <- paste0(vars[[i]],"_sw_log10")
     x <- data.frame(stat.desc(foo$log10, norm=TRUE))
+    colnames(x) <- c(paste0(vars[[i]],"_log10"))
     x <- round(x, digits =2)
     desc_log10 <- cbind(desc_log10,x)
     
@@ -119,6 +124,7 @@ transformvars <- function(mydata,vars,skew){
     # Save the stats descriptions, including Shapiro-Wilks
     sw <- paste0(vars[[i]],"_sw_log")
     x <- data.frame(stat.desc(foo$log, norm=TRUE))
+    colnames(x) <- c(paste0(vars[[i]],"_log"))
     x <- round(x, digits =2)
     desc_log <- cbind(desc_log,x)
     
@@ -132,6 +138,7 @@ transformvars <- function(mydata,vars,skew){
     # Save the stats descriptions, including Shapiro-Wilks
     sw <- paste0(vars[[i]],"_sw_inv")
     x <- data.frame(stat.desc(foo$inv, norm=TRUE))
+    colnames(x) <- c(paste0(vars[[i]],"_inv"))
     x <- round(x, digits =2)
     desc_inv <- cbind(desc_inv,x)
     
@@ -177,4 +184,5 @@ transformvars <- function(mydata,vars,skew){
   print(doc, target = "output/transformations.docx")
 }
 
-transformvars(data,variables,"pos")
+#calling the function on your data, list of variables, and direction of skew
+transformvars(data,variables,skewval)
