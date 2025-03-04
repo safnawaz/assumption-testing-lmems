@@ -23,7 +23,7 @@ model2 <- lmer(social ~ danceability + acousticness + (1|pptnum) + (1|Title), da
 # update allmodels by adding to list 
 allmodels <- list(model1,model2)
 
-# function for 
+# function for running lmem assumption plots
 lmemassumptions <- function(models){
   # Initialising document Assumption Tests Document
   doc <- read_docx()
@@ -64,7 +64,7 @@ lmemassumptions <- function(models){
     )
     
     for (j in seq_along(plots)) {
-      file_path <- paste0("/Users/safiyyahnawaz/Documents/assumption-testing-lmems/plots/model_", i,  plots[j], ".png")
+      file_path <- paste0("/Users/safiyyahnawaz/Documents/assumption-testing-lmems/output/plots/model", i, "_", plots[j], ".png")
       png(file_path)
       plot_funcs[[j]]()
       dev.off()
