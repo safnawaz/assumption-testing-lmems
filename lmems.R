@@ -17,11 +17,12 @@ setwd("/Users/safiyyahnawaz/Documents/assumption-testing-lmems")
 data <- read.csv('data/sampledata.csv')
 
 # defining your model, you can add more here below, and be sure to update 'allmodels' with modelnames
-model1 <- lmer(memenergy ~ danceability + acousticness + (1|pptnum) + (1|Title), data = data)
-model2 <- lmer(social ~ danceability + acousticness + (1|pptnum) + (1|Title), data = data)
+model1 <- lmer(memvalence ~ danceability + acousticness + (1|pptnum) + (1|Title), data = data)
+model2 <- lmer(vivid ~ danceability + acousticness + (1|pptnum) + (1|Title), data = data)
+model3 <- lmer(memenergy ~ danceability + acousticness + (1|pptnum) + (1|Title), data = data)
 
 # update allmodels by adding to list 
-allmodels <- list(model1,model2)
+allmodels <- list(model1,model2,model3)
 
 # function for running lmem assumption plots
 lmemassumptions <- function(models){
@@ -40,7 +41,7 @@ lmemassumptions <- function(models){
     # Fit model
     model <- models[[i]]
     var <- model@call$formula[[2]]
-    modeldata <- model@call$data
+    data <- model@call$data
     
     doc <- body_add_par(doc, paste("Model ", i,":"), style = "heading 2")
     doc <- body_add_par(doc, paste0(model@call[2]))
@@ -57,7 +58,7 @@ lmemassumptions <- function(models){
     # Save and add diagnostic plots
     plots <- c("obspreds","homosced", "qq", "acf")
     plot_funcs <- list(
-      function() { plot(fitted(model), data[[var]]); abline(0,1, col='red') }, # Scatterplot of observed vs predicted values
+      function() { plot(fitted(model), get(data)[[var]]); abline(0,1, col='red') }, # Scatterplot of observed vs predicted values
       function() { plot(fitted(model), resid(model)); abline(h=0, col='red') }, # Plot of residuals to assess homoscedasticity
       function() { qqnorm(resid(model)); qqline(resid(model), col='red') }, # Q-Q plot to assess normality of residuals
       function() { acf(resid(model)) } # ACF for independence of residuals
