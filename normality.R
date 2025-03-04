@@ -33,7 +33,7 @@ data <- read.csv('data/sampledata.csv')
 
 # Update dependent variables list with name of outcome variables you want to check normality for. 
 # List can have as many variables as needed
-dvs <- list("valence", "loudness")
+dvs <- list("danceability","energy","loudness","speechiness","acousticness","instrumentalness", "liveness","valence","tempo")
 
 # update predictor variable with name of predictor of interest, this is only for visualising scatterplots of dvs against outcome
 predictor <- "vivid"
@@ -114,7 +114,7 @@ normcheck <- function(mydata,vars,pred){
   flextable_vars <- set_table_properties(flextable_vars, layout="autofit")
   doc <- body_add_flextable(doc, flextable_vars)
   
-  print(doc, target = "output/normality_outliers.docx")
+  print(doc, target = "output/example_output/normality_outliers.docx")
   
 }
 

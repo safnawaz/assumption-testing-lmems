@@ -33,7 +33,7 @@ data <- read.csv('data/sampledata.csv')
 
 # Update dependent variables list with name of variables you want to try transformations on
 # List can have as many variables as needed
-variables <- list("tempo","liveness")
+variables <- list("danceability","energy","loudness","speechiness","acousticness","instrumentalness", "liveness","valence","tempo")
 
 # Setting skew value, can either be "pos" or "neg". Pick pos if the data have a positive skew, and neg if they have a negative skew
 skewval <- "pos"
